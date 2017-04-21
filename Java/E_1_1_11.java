@@ -2,44 +2,39 @@ import edu.princeton.cs.algs4.*;
 
 public class E_1_1_11 {
     public static void main(String[] args) {
-        boolean[][] b = new boolean[StdIn.readInt()][StdIn.readInt()];
-        initial(b);
+        int a = StdIn.readInt();
+        int b = StdIn.readInt();
+        boolean[][] table = new boolean[a][b];
+        initial(table);
         StdOut.print("++");
-        for (int x = 0; x < getColums(b); x++) {
-            StdOut.print("column" + x + " ");
+        for (int i = 0; i < b; i++) {
+            StdOut.printf(" %2d ", i);
         }
         StdOut.println();
-        for (int i = 0; i < b.length; i++) {
-            StdOut.print("line" + i + " ");
-            for (int j = 0; j < b[i].length; j++) {
-                StdOut.print("   " + trans(b[i][j]) + "    ");
+        for (int i = 0; i < table.length; i++) {
+            StdOut.printf("%2d", i);
+            for (int j = 0; j < b; j++) {
+                StdOut.printf(" %2s ", trans(table[i][j]));
             }
             StdOut.println();
         }
 
     }
 
-    private static boolean[][] initial(boolean[][] b) {
-        for (int i = 0; i < b.length; i++) {
-            for (int j = 0; j < b[i].length; j++)
-                b[i][j] = StdRandom.bernoulli();
+    private static boolean[][] initial(boolean[][] table) {
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                table[i][j] = StdRandom.bernoulli();
+            }
         }
-        return b;
+        return table;
     }
 
-    private static String trans(boolean b) {
-        if (b)
+    private static String trans(boolean a) {
+        if (a)
             return "*";
         else
             return "-";
     }
 
-    private static int getColums(boolean[][] b) {
-        int columns = 0;
-        for (int i = 0; i < b.length; i++) {
-            if (b[i].length > columns)
-                columns = b[i].length;
-        }
-        return columns;
-    }
 }
